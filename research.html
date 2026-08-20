@@ -58,8 +58,8 @@
       The more important result was the per-class breakdown showed
       underneath it. Pneumonia recall was nearly perfect (0.998), but <strong>Tuberculosis recall was
       only 0.63</strong>, meaning roughly 37% of actual TB cases were missed, despite TB being the class
-      where a missed diagnosis carries the highest clinical cost. TB precision was a perfect 1.00 — when
-      the model did predict TB, it was always right — which points to the model being systematically
+      where a missed diagnosis carries the highest clinical cost. TB precision was a perfect 1.00, when
+      the model did predict TB, it was always right, which points to the model being systematically
       too conservative, defaulting ambiguous cases to "Normal" rather than committing to a TB call. A
       model that's "78% accurate" can still be quietly worse at detecting the highest-cost class, and a
       single accuracy number will never surface that. That reframed the whole evaluation approach around
@@ -78,7 +78,7 @@
     </a>
     <p>
       Upper-limb prostheses have gotten better in mechanics and actuation, but control is still one of
-      the biggest obstacles to making them intuitive and affordable — clinical devices lean on EMG-based
+      the biggest obstacles to making them intuitive and affordable, clinical devices lean on EMG-based
       control, and cost is a documented barrier to access and repair. This project doesn't attempt
       EMG/EEG acquisition directly; it addresses the upstream problem those systems depend on: reliably
       acquiring, sampling, and visualizing low-amplitude analog signals on inexpensive, accessible
@@ -88,7 +88,7 @@
       Built around an Arduino Uno, validated first with a simple potentiometer, then against a
       controlled AD9833 waveform generator swept from 1 Hz to 10 kHz. Switching the ADC from the
       default 5V reference to the internal 1.1V reference moved the usable signal from ~75-85 counts up
-      to ~310-344 counts — a meaningful jump in effective resolution. A dedicated timing test measured
+      to ~310-344 counts, a meaningful jump in effective resolution. A dedicated timing test measured
       the system's effective sampling rate at <strong>≈8.93 kS/s</strong>, giving an estimated Nyquist
       limit of <strong>≈4.47 kHz</strong>: above that, amplitude was still detectable but waveform shape
       could no longer be trusted as a faithful reconstruction. The platform was then extended to accept
@@ -116,7 +116,7 @@
       A small-scale contactless magnetic transmission: two coaxial rotor disks, each ringed with
       alternating-polarity permanent magnets, transfer rotational motion across an air gap with no
       physical contact. The motivation came from prosthetic and assistive-device joints, where excessive
-      torque can damage internal components or create safety risks — a magnetic coupling is an
+      torque can damage internal components or create safety risks, a magnetic coupling is an
       interesting safety mechanism because its failure mode isn't destructive. If the load exceeds the
       maximum transmissible torque, the rotors lose synchronization and slip, then reengage once the
       load drops or the rotors realign, with no broken teeth or parts to replace, unlike a rigid
@@ -154,11 +154,11 @@
       Doubling the air gap dropped the first-slip mass from 300g to 70g and the failure mass from 470g
       to 170g, confirming a smaller gap transmits more torque before slipping. A simplified point-dipole
       magnetic model predicted roughly a 16&times; drop in force between the two gaps, but measured
-      failure torque only dropped about 2.8&times; — the model overpredicted absolute failure torque
+      failure torque only dropped about 2.8&times; the model overpredicted absolute failure torque
       substantially, consistent with the 3/8 in gap being smaller than the magnets themselves and well
       into near-field territory, where that approximation is known to break down. Qualitatively, the
       most notable result: around 310g at the 3/8 in gap, the system lifted the mass, slipped after
-      reaching a certain height, dropped slightly, and re-locked — a passive overload response with
+      reaching a certain height, dropped slightly, and re-locked; a passive overload response with
       nothing broken.
     </p>
     <div class="media-grid">
