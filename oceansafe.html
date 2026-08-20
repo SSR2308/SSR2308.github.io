@@ -43,8 +43,7 @@
   <p class="section-sub" style="font-size:1.05rem;">
     A mobile-first web app that combines live ocean/beach conditions, an AI safety chatbot, and
     community hazard reporting into one platform. Built solo as a working Streamlit prototype to
-    validate the concept before a native app — the write-up below is honest about what's actually
-    built versus what's still the pitch.
+    validate the concept before a native app.
   </p>
 
   <div class="section-block">
@@ -54,13 +53,13 @@
     </a>
     <p>
       The pitch: combine real-time ocean data, AI insights, fishing guidance, and community reporting
-      into one platform to keep beachgoers — surfers, swimmers, lifeguards, and families — safe and
+      into one platform to keep beachgoers, surfers, swimmers, lifeguards, and families, safe and
       informed at Southern California beaches. It placed in the <strong>Top 10 for California's 47th
       Congressional District</strong> in the Congressional App Challenge.
     </p>
     <p>
       Rather than build toward a native app blind, I built a working Python/Streamlit prototype first —
-      real APIs, a real chatbot, a real map — to validate the concept, the data integrations, and the
+      real APIs, a real chatbot, a real map, to validate the concept, the data integrations, and the
       chatbot before committing to the bigger iOS/Firebase build the original pitch scoped.
     </p>
     <div style="max-width:600px;margin:20px auto 6px;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(11,31,58,0.08);">
@@ -97,7 +96,7 @@
       the top-matching chunks from a Pinecone vector index built from a curated beach-safety knowledge
       base, and passes those chunks as context to <code>gpt-4o-mini</code> through a LangChain prompt
       template. The prompt explicitly instructs the model to answer only from the retrieved context and
-      to say so if the answer isn't in it, rather than filling gaps with general chatbot knowledge —
+      to say so if the answer isn't in it, rather than filling gaps with general chatbot knowledge,
       the jellyfish-sting answer in the screenshot above, for example, is grounded in a specific
       first-aid source rather than generic web knowledge.
     </p>
