@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research | Shravan Suresh</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Shravan Suresh</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vex-robotics.html">VEX Robotics</a>
+      <a href="bionic-hand.html">Bionic Hand</a>
+      <a href="research.html" class="current">Research</a>
+      <a href="oceansafe.html">OceanSafe</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<div class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow">Applied Machine Learning · Signal Processing</div>
+    <h1>Research</h1>
+    <div class="meta">
+      <span>Independent &amp; collaborative research, 2024–2026</span>
+    </div>
+  </div>
+</div>
+
+<article class="wrap" style="padding-top:48px;">
+
+  <p class="section-sub" style="font-size:1.05rem;">
+    Four ongoing research threads, spanning applied ML, embedded signal acquisition, and
+    electromechanical design — three of them with full code, data, and figures on GitHub, so the
+    numbers below can be checked against the actual notebooks and firmware rather than taken on faith.
+  </p>
+
+  <div class="section-block">
+    <h2>Chest X-Ray Classification (AI/ML)</h2>
+    <div class="status-line">Manuscript in preparation — targeting AIRC 2026</div>
+    <a class="repo-link" href="https://github.com/SSR2308/chest-xray-classification" target="_blank" rel="noopener">
+      &#128279; View code &amp; data on GitHub
+    </a>
+    <p>
+      Built a three-class chest X-ray classifier — Normal / Pneumonia / Tuberculosis — on roughly
+      25,500 images. A pretrained CNN backbone extracts features, which are then passed to three
+      different classifier heads (KNN, Random Forest, and MLP) tuned across a 300+ configuration
+      hyperparameter sweep, evaluated under both a baseline and an augmented training regime. The MLP
+      came out on top in both, and the baseline MLP reached <strong>78.8% accuracy</strong> on the
+      held-out test set.
+    </p>
+    <p>
+      The more important result wasn't that headline number — it's what the per-class breakdown showed
+      underneath it. Pneumonia recall was nearly perfect (0.998), but <strong>Tuberculosis recall was
+      only 0.63</strong>, meaning roughly 37% of actual TB cases were missed, despite TB being the class
+      where a missed diagnosis carries the highest clinical cost. TB precision was a perfect 1.00 — when
+      the model did predict TB, it was always right — which points to the model being systematically
+      too conservative, defaulting ambiguous cases to "Normal" rather than committing to a TB call. A
+      model that's "78% accurate" can still be quietly worse at detecting the highest-cost class, and a
+      single accuracy number will never surface that. That reframed the whole evaluation approach around
+      per-class precision/recall and the confusion matrix instead of top-line accuracy.
+    </p>
+    <img class="doc-shot" src="assets/research/xray-confusion-matrix.jpg" alt="Confusion matrix for the baseline MLP on the held-out test set — Normal, Pneumonia, Tuberculosis">
+    <p class="photo-caption">Baseline MLP, test set — the Tuberculosis row shows the missed cases</p>
+    <p class="code-caption" style="margin-top:14px;">Tech stack: Python · PyTorch (feature extraction) · scikit-learn (KNN / Random Forest / MLP) · Augmentor · pandas · matplotlib</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Low-Cost Arduino-Based Oscilloscope</h2>
+    <div class="status-line">Under double-blind review — IEEE SoutheastCon 2027</div>
+    <a class="repo-link" href="https://github.com/SSR2308/low-cost-arduino-oscilloscope" target="_blank" rel="noopener">
+      &#128279; View code &amp; data on GitHub
+    </a>
+    <p>
+      Upper-limb prostheses have gotten better in mechanics and actuation, but control is still one of
+      the biggest obstacles to making them intuitive and affordable — clinical devices lean on EMG-based
+      control, and cost is a documented barrier to access and repair. This project doesn't attempt
+      EMG/EEG acquisition directly; it addresses the upstream problem those systems depend on: reliably
+      acquiring, sampling, and visualizing low-amplitude analog signals on inexpensive, accessible
+      hardware, as a signal-visualization platform for future biosignal work.
+    </p>
+    <p>
+      Built around an Arduino Uno, validated first with a simple potentiometer, then against a
+      controlled AD9833 waveform generator swept from 1 Hz to 10 kHz. Switching the ADC from the
+      default 5V reference to the internal 1.1V reference moved the usable signal from ~75-85 counts up
+      to ~310-344 counts — a meaningful jump in effective resolution. A dedicated timing test measured
+      the system's effective sampling rate at <strong>≈8.93 kS/s</strong>, giving an estimated Nyquist
+      limit of <strong>≈4.47 kHz</strong>: above that, amplitude was still detectable but waveform shape
+      could no longer be trusted as a faithful reconstruction. The platform was then extended to accept
+      real external audio through a 3.5mm AUX jack via an AC-coupled biased input stage, and cleanly
+      picked up a 200Hz test tone scaling with source volume.
+    </p>
+    <div class="media-grid">
+      <div>
+        <img src="assets/research/oscilloscope-wiring.jpg" alt="AD9833 waveform generator module wired to the Arduino Uno on a breadboard">
+      </div>
+      <div>
+        <img src="assets/research/oscilloscope-waveform.jpg" alt="Serial Plotter output showing a captured waveform">
+      </div>
+    </div>
+    <p class="code-caption" style="margin-top:14px;">Tech stack: Arduino Uno R3 · AD9833 DDS module (SPI) · Arduino Serial Plotter</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Contactless Magnetic Transmission — Torque Transfer &amp; Slip Behavior</h2>
+    <div class="status-line">Under double-blind review — IEEE ICMRE 2027</div>
+    <a class="repo-link" href="https://github.com/SSR2308/magnetic-transmission-torque-slip" target="_blank" rel="noopener">
+      &#128279; View code &amp; data on GitHub
+    </a>
+    <p>
+      A small-scale contactless magnetic transmission: two coaxial rotor disks, each ringed with
+      alternating-polarity permanent magnets, transfer rotational motion across an air gap with no
+      physical contact. The motivation came from prosthetic and assistive-device joints, where excessive
+      torque can damage internal components or create safety risks — a magnetic coupling is an
+      interesting safety mechanism because its failure mode isn't destructive. If the load exceeds the
+      maximum transmissible torque, the rotors lose synchronization and slip, then reengage once the
+      load drops or the rotors realign, with no broken teeth or parts to replace, unlike a rigid
+      geartrain. <strong>Research question:</strong> how does air gap distance affect torque transfer,
+      slip behavior, and load capacity?
+    </p>
+    <p>
+      The prototype used two 4-inch CNC-cut disks, each with eight N52 neodymium magnets in alternating
+      polarity, driven by a motor on the input side with the output side connected to a hanging-mass
+      load. Two Hall effect sensors, interrupt-driven off an Arduino, measured input and output RPM to
+      compute slip percentage in real time. Two air gaps were tested — 3/8 in and 6/8 in:
+    </p>
+    <table class="test-table">
+      <tr><th>Air Gap</th><th>Max No-Slip</th><th>First Slip</th><th>Complete Failure</th></tr>
+      <tr><td>3/8 in</td><td>290 g</td><td>300 g</td><td>470 g</td></tr>
+      <tr><td>6/8 in</td><td>60 g</td><td>70 g</td><td>170 g</td></tr>
+    </table>
+    <p>
+      Doubling the air gap dropped the first-slip mass from 300g to 70g and the failure mass from 470g
+      to 170g, confirming a smaller gap transmits more torque before slipping. A simplified point-dipole
+      magnetic model predicted roughly a 16&times; drop in force between the two gaps, but measured
+      failure torque only dropped about 2.8&times; — the model overpredicted absolute failure torque
+      substantially, consistent with the 3/8 in gap being smaller than the magnets themselves and well
+      into near-field territory, where that approximation is known to break down. Qualitatively, the
+      most notable result: around 310g at the 3/8 in gap, the system lifted the mass, slipped after
+      reaching a certain height, dropped slightly, and re-locked — a passive overload response with
+      nothing broken.
+    </p>
+    <div class="media-grid">
+      <div><img src="assets/research/magnetic-cad-disk.jpg" alt="CAD model of the rotor disk"></div>
+      <div><img src="assets/research/magnetic-fabricated-disks.jpg" alt="The two fabricated rotor disks"></div>
+    </div>
+    <img class="doc-shot wide" style="margin-top:14px;" src="assets/research/magnetic-prototype.jpg" alt="Full prototype — motor, frame, input and output rotors, with a VEX controller displaying live torque and RPM">
+    <p class="photo-caption">Full prototype, mid-test — the VEX controller is displaying live torque/RPM readout</p>
+    <img class="doc-shot wide" style="margin-top:20px;" src="assets/research/magnetic-slip-chart.jpg" alt="Slip percentage vs. mass for both air gaps">
+    <p class="photo-caption">Slip rose sharply past each gap's failure threshold — steeper and earlier for the wider 6/8 in gap</p>
+    <p class="code-caption" style="margin-top:14px;">Tech stack: Arduino · Hall effect sensors (interrupt-driven) · CNC-cut rotor disks · N52 neodymium magnets</p>
+  </div>
+
+  <div class="section-block">
+    <h2>AI-Assisted Communication Research</h2>
+    <p>
+      Student researcher on an fMRI-AI study developing methods to decode intended communication
+      from neural signal data, working toward assistive communication technology for patients who have
+      lost the ability to speak or move. Currently under review for publication. This one draws on
+      institutional/clinical data rather than a personal codebase, so there's no public repo for it.
+    </p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a href="https://linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
+    </div>
+    <div>&copy; 2026 Shravan Suresh</div>
+  </div>
+</footer>
+
+</body>
+</html>
