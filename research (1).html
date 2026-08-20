@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research | Shravan Suresh</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Shravan Suresh</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vex-robotics.html">VEX Robotics</a>
+      <a href="bionic-hand.html">Bionic Hand</a>
+      <a href="research.html" class="current">Research</a>
+      <a href="oceansafe.html">OceanSafe</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<div class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow">Applied Machine Learning · Signal Processing</div>
+    <h1>Research</h1>
+    <div class="meta">
+      <span>Independent &amp; collaborative research, 2024–2026</span>
+    </div>
+  </div>
+</div>
+
+<article class="wrap" style="padding-top:48px;">
+
+  <div class="section-block">
+    <h2>Chest X-Ray Classification (AI/ML)</h2>
+    <p>
+      Built a three-class chest X-ray classifier (Normal / Pneumonia / Tuberculosis) on ~30,000 images
+      using a MobileNetV2 feature extractor feeding a hybrid classifier pipeline. After 300+
+      hyperparameter runs and augmentation to handle class imbalance, the model reached 78% overall
+      accuracy — but the headline number hid a real problem: pneumonia recall was near-perfect while TB
+      recall sat around 0.63, meaning the model could look accurate while still missing the cases that
+      matter most clinically.
+    </p>
+    <p>
+      That reframed the project around failure modes instead of top-line accuracy: plotting
+      per-class precision-recall curves, checking calibration so predicted probabilities are meaningful,
+      and adjusting sensitivity specifically for TB detection. Submitted to AIRC 2026.
+    </p>
+    <div class="media-placeholder">
+      <span class="label">Chart: precision-recall / confusion matrix</span>
+      <code>assets/research/xray-results.jpg</code>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Biosignal Oscilloscope (Arduino)</h2>
+    <p>
+      <!-- Expand with the actual technical build: what biosignal, sampling rate,
+           noise-filtering approach, how it was validated against a reference. -->
+      Designed and built an Arduino-based oscilloscope for biosignal acquisition, written up as an
+      independent paper submitted to IEEE SoutheastCon 2027.
+    </p>
+    <div class="media-placeholder">
+      <span class="label">Photo / schematic</span>
+      <code>assets/research/oscilloscope.jpg</code>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Magnetic Coupling / Wireless Power Transmission</h2>
+    <p>
+      <!-- Expand with the core technical contribution and results. -->
+      Independent paper on magnetic coupling for power transmission, submitted to ICMRE 2027.
+    </p>
+  </div>
+
+  <div class="section-block">
+    <h2>AI-Assisted Communication Research</h2>
+    <p>
+      Student researcher on an fMRI-AI study developing methods to decode intended communication
+      from neural signal data, working toward assistive communication technology for patients who have
+      lost the ability to speak or move. Currently under review for publication.
+    </p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a href="https://linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
+    </div>
+    <div>&copy; 2026 Shravan Suresh</div>
+  </div>
+</footer>
+
+</body>
+</html>
