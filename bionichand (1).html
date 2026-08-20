@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Independent Bionic Hand Project | Shravan Suresh</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Shravan Suresh</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vex-robotics.html">VEX Robotics</a>
+      <a href="bionic-hand.html" class="current">Bionic Hand</a>
+      <a href="research.html">Research</a>
+      <a href="oceansafe.html">OceanSafe</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<div class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow">Assistive Technology · Embedded Systems · CAD</div>
+    <h1>Independent Bionic Hand Project</h1>
+    <div class="meta">
+      <span>Designer &amp; Developer — Independent</span>
+      <span>12th grade — ongoing</span>
+    </div>
+  </div>
+</div>
+
+<article class="wrap" style="padding-top:48px;">
+
+  <p class="section-sub" style="font-size:1.05rem;">
+    An independent, low-cost prosthetic hand, currently at the proof-of-concept stage: a full
+    five-finger hand is designed in CAD, and a single 3D-printed finger has been built and actuated
+    to validate the mechanism before committing to the full build.
+  </p>
+
+  <div class="section-block">
+    <h2>Overview</h2>
+    <p>
+      The goal is a low-cost, mechanically simple prosthetic hand — 3D-printed structural components
+      driven by hobby servos rather than expensive myoelectric actuators, aimed at making assistive
+      tech more affordable and accessible. The full hand is designed as five independently-jointed
+      fingers plus a rotating thumb, each finger built from segmented links connected by pin joints.
+    </p>
+    <div class="media-grid">
+      <div><img src="assets/bionic-hand/cad-front.jpg" alt="Bionic hand CAD — front view"></div>
+      <div><img src="assets/bionic-hand/cad-angle.jpg" alt="Bionic hand CAD — three-quarter view"></div>
+    </div>
+    <img class="doc-shot wide" style="margin-top:14px;" src="assets/bionic-hand/cad-composite.jpg" alt="Three CAD views of the bionic hand — front, side, and three-quarter angle">
+    <p class="photo-caption">Full-hand CAD design — five fingers plus a rotating thumb, the target for the next build</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Proof-of-concept: single-finger actuation</h2>
+    <p>
+      Before committing to building all five fingers, I built and actuated a single finger first, to
+      validate the mechanism. Each finger segment is polycarbonate, connected at the joints and driven
+      by a hobby servo through a tendon — an elastic strap routed through the joints that pulls the
+      finger closed as the servo rotates, the same basic principle real tendon-driven prosthetic
+      fingers use. For now, actuation is controlled directly by an analog joystick rather than any
+      biosignal input, which lets me test and calibrate the servo range and tendon routing before
+      adding real control input on top of it.
+    </p>
+    <div class="media-grid">
+      <div><img src="assets/bionic-hand/finger-side.jpg" alt="Single polycarbonate finger prototype, side view, tendon routed through the joints"></div>
+      <div><img src="assets/bionic-hand/finger-top.jpg" alt="Single polycarbonate finger prototype, top-down view"></div>
+    </div>
+    <p class="photo-caption">The finger prototype — tendon (blue strap) routed through each joint, pulled by the servo</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 6px;">
+      <div>
+        <div style="max-width:280px;margin:0 auto;aspect-ratio:9/16;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(11,31,58,0.08);">
+          <iframe src="https://www.youtube.com/embed/4GLsw-PHpDg" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>
+        </div>
+        <p class="photo-caption">The finger actuating — servo pulling the tendon closed</p>
+      </div>
+      <div>
+        <div style="max-width:280px;margin:0 auto;aspect-ratio:9/16;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(11,31,58,0.08);">
+          <iframe src="https://www.youtube.com/embed/vdRHZmtfcJU" style="width:100%;height:100%;border:0;" allowfullscreen></iframe>
+        </div>
+        <p class="photo-caption">Full-hand CAD walkaround — what's being built next</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block">
+    <h2>Control code</h2>
+    <p>
+      The joystick's X-axis is read, constrained to its calibrated endpoints, given a small deadzone
+      around center so the finger doesn't drift from sensor noise while idle, then mapped to a 0-180°
+      servo angle:
+    </p>
+    <img class="doc-shot" src="assets/bionic-hand/servo-code.jpg" alt="Arduino code reading a joystick and mapping it to a servo angle, with deadzone and constrain logic">
+    <p class="photo-caption">Joystick-to-servo mapping, with calibrated deadzone</p>
+    <img class="doc-shot wide" style="margin-top:16px;" src="assets/bionic-hand/finger-wiring.jpg" alt="Arduino, joystick, and servo wiring for the finger prototype">
+    <p class="photo-caption">Full wiring — joystick into the Arduino, servo output driving the finger</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Status</h2>
+    <p>
+      Actively in development. Next steps: build out the remaining four fingers and thumb from the
+      CAD design, then replace the joystick with real control input.
+    </p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a href="https://linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
+    </div>
+    <div>&copy; 2026 Shravan Suresh</div>
+  </div>
+</footer>
+
+</body>
+</html>
